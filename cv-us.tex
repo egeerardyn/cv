@@ -1,0 +1,223 @@
+% LaTeX Curriculum Vitae Template
+%
+% Copyright (C) 2004-2009 Jason Blevins <jrblevin@sdf.lonestar.org>
+% http://jblevins.org/projects/cv-template/
+%
+% You may use use this document as a template to create your own CV
+% and you may redistribute the source code freely. No attribution is
+% required in any resulting documents. I do ask that you please leave
+% this notice and the above URL in the source code if you choose to
+% redistribute this file.
+
+\documentclass[a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+% Comment the following lines to use the default Computer Modern font
+% instead of the Palatino font provided by the mathpazo package.
+% Remove the 'osf' bit if you don't like the old style figures.
+\usepackage[T1]{fontenc}
+\usepackage[sc,osf]{mathpazo}
+
+% Set your name here
+\def\name{Egon Geerardyn}
+
+% Replace this with a link to your CV if you like, or set it empty
+% (as in \def\footerlink{}) to remove the link in the footer:
+\def\footerlink{}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {electrical, computer, engineering, cv},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+% \geometry{
+%   body={6.5in, 8.5in},
+%   left=1.0in,
+%   top=1.25in
+% }
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+\begin{document}
+
+% Place name at left
+{\huge \name}
+
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
+
+\vspace{0.25in}
+
+\begin{minipage}{0.30\linewidth}
+  Zomerstraat 26/0 \\
+  1050 Elsene\\
+  Belgium
+\end{minipage}
+\begin{minipage}{0.55\linewidth}
+  \begin{tabular}{rl}
+    Phone: & +32 (0)472 65 61 08\\
+    Email: & \href{mailto:egon.geerardyn@gmail.com}{\tt egon.geerardyn@gmail.com} \\
+  \end{tabular}
+\end{minipage}
+
+
+\section*{Personalia}
+
+\begin{itemize}
+\item Born on April 15, 1988.
+\item Interested in the integration of information systems and day-to-day life; electronics; gadgets; community-driven projects.
+\end{itemize}
+
+
+\section*{Education}
+\begin{itemize}
+  \item Master in Engineering Sciences: Electronics and Information Technology, Vrije Universiteit Brussel. 2009 - 2011
+         \textit{Profile:} Measurements, Modelling and Simulations. \textit{magna cum laude}.
+         Master's thesis: \textit{`A Simulation Method for Pinpointing the Dominant Nonlinear Contributors in CMOS Circuits'}
+  \item Bachelor in Engineering Sciences, Vrije Universiteit Brussel. 2006 - 2009. \textit{cum laude}
+  \item Koninklijk Atheneum, Vilvoorde. 2002 - 2006.
+  \item Sint-Pieterscollege, Jette. 2000 - 2002.
+\end{itemize}
+
+\section*{Online Education}
+  \begin{itemize}
+    \item ``Introduction to Databases'' by prof. Jennifer Widom 
+	      (\href{http://www.db-class.org}{\tt db-class.org}). 2011.
+	      \textit{Result: $97\%$}
+    \item ``Machine Learning'' by prof. Andrew Ng 
+	      (\href{http://www.ml-class.org}{\tt ml-class.org}). 2011.
+		  \textit{Result: $100\%$}
+  \end{itemize}
+
+\section*{Academic Carreer} 
+\begin{description}
+  \item[October 2012 - November 2012] Visiting PhD researcher at \textit{Department CST} (Control Systems Technology), Eindhoven University of Technology.
+    \begin{description}
+      \item [Description:] The Local Polynomial Method for $\mathcal{H}_{\infty}$ Robust Control.
+      \item [Contact:]
+         Tom Oomen (\href{mailto:t.a.e.oomen@tue.nl}{\tt t.a.e.oomen@tue.nl}).\\
+         \href{http://www.dct.tue.nl/toomen/}{\tt http://www.dct.tue.nl/toomen}. +31 (0)40 247 8332.
+    \end{description}
+  \item[October 2011 - Present] PhD researcher at \textit{Department ELEC} (Fundamental Electricity and Instrumentation), Vrije Universiteit Brussel.
+    \begin{description}
+      \item [Description:] User-friendly system identification for massive multiple-input multiple-output systems.
+      \item [Promotor:]
+         Johan Schoukens (\href{mailto:johan.schoukens@vub.ac.be}{\tt johan.schoukens@vub.ac.be}).\\
+         \href{http://wwwtw.vub.ac.be/elec/}{\tt http://wwwtw.vub.ac.be/elec/}. +32 (0)2 629 29 44.
+    \end{description}
+\end{description} 
+For publications, please consult the academic file (`Academisch Dossier').
+
+
+\section*{Employment}
+\begin{description}
+  \item[September 2011] Summer job at \textit{Department ELEC} (Fundamental Electricity and Instrumentation), Vrije Universiteit Brussel.
+    \begin{description}
+     \item [Description:] Porting the course notes of `Statistiek voor Ingenieurs' and `System Identification' from FrameMaker to LyX.
+     \item [Contact:]
+     Johan Schoukens (\href{mailto:johan.schoukens@vub.ac.be}{\tt johan.schoukens@vub.ac.be}).\\
+     \href{http://wwwtw.vub.ac.be/elec/}{\tt http://wwwtw.vub.ac.be/elec/}.
+     +32 (0)2 629 29 44.
+    \end{description}
+  \item[August 2010 - September 2010] Summer job at \textit{Department ELEC} (Fundamental Electricity and Instrumentation), Vrije Universiteit Brussel.
+    \begin{description}
+     \item [Description:] Lab preparations for students master of electronics engineering for the course `Meten en Modelleren' (`Measuring and Modelling').
+           I designed, tested and reported on labs regarding transfer function measurements and description of nonlinear distortions using NI Elvis II, LabView and MATLAB. I also ported the course notes of `Systeemtheorie' from FrameMaker to LyX.
+     \item [Contact:]
+     Yves Rolain (\href{mailto:yves.rolain@vub.ac.be}{\tt yves.rolain@vub.ac.be}) and\\
+     Johan Schoukens (\href{mailto:johan.schoukens@vub.ac.be}{\tt johan.schoukens@vub.ac.be}).\\
+     \href{http://wwwtw.vub.ac.be/elec/}{\tt http://wwwtw.vub.ac.be/elec/}.
+     +32 (0)2 629 29 44.
+    \end{description}
+  \item[August 2009 - September 2009] Summer job at \textit{Department ELEC} (Fundamental Electricity and Instrumentation), Vrije Universiteit Brussel. 
+    \begin{description}
+     \item [Description:] Lab preparations for bachelor students of engineering for the course \\`Toegepaste Elektriciteit' (`Applied Electricity').
+           I designed, tested and reported on labs to introduce students to the use of complex impedances in circuit analysis and transient response of passive first and second order circuits (RC, LC and RLC)
+           using NI Elvis II, LabView and MATLAB.
+     \item [Contact:]
+           Johan Schoukens (\href{mailto:johan.schoukens@vub.ac.be}{\tt johan.schoukens@vub.ac.be}).\\
+           \href{http://wwwtw.vub.ac.be/elec/}{\tt http://wwwtw.vub.ac.be/elec/}.
+           +32 (0)2 629 29 44.
+    \end{description}
+  \item[August 2008 - September 2008] Summer job at \textit{Caterpillar Distribution Center}, Grimbergen.
+    \begin{description}
+     \item [Description:] US Expediting: procurement of back-ordered parts for customers and aiding POFD analysts in their day-to-day job.
+    \end{description}
+  \item[September 2006] Summer job at \textit{Caterpillar Distribution Center}, Grimbergen.
+    \begin{description}
+     \item [Description:] Filling orders of high-quantity, fast-moving parts.
+    \end{description}
+\end{description}
+
+
+\section*{Experiences}
+\begin{description}
+ \item[Ubuntu-be:] Member of the Belgian Ubuntu Local Community. 2010
+ \item[\href{http://forum.scholieren.com}{Scholieren.com}:] Forum moderator for one of the largest high school forums in the Netherlands. I was responsible for both the exact sciences and software/multimedia parts. 2007 - 2009.
+ \item[Polytechnische Kring:] Webmaster and backup server admin for the Polytechnische Kring (fraternity). 2007 - 2008.
+ \item[The Mood:] Board member, webmaster and `technical director' for youth organization The Mood in Vilvoorde. 2005 - 2008.
+\end{description}
+
+
+
+\section*{Skills}
+
+\begin{description}
+  \item[Computer use:]
+    Linux 2.6 -- 3.0 (mainly Ubuntu, Arch and Gentoo),
+    Microsoft Windows (3.11 - 7), Microsoft Office, OpenOffice/LibreOffice, \LaTeX, ANTLR
+  \item[Computer Aided Engineering:] MultiSim, Cadence Spectre (basics), AutoDesk Inventor.
+  \item[Programming languages:]
+    MATLAB, Python, Java, Object Pascal/Delphi, x86 Assembler (notions), 8051 Assembler (notions),
+    Arduino C, Scala (notions), JavaScript (notions), LabView (basics), Perl (notions)
+  \item[Version control:] git, SVN (notions)
+  \item[Spoken and Written Languages:] Dutch (native), French (basics), English (fluent)
+\end{description}
+
+
+
+\bigskip
+
+% Footer
+\begin{center}
+%   \begin{footnotesize}
+%     Last updated: \today 
+%   \end{footnotesize}
+\end{center}
+
+\end{document}
