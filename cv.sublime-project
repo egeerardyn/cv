@@ -1,0 +1,27 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"FuzzyFilePath":
+		{
+		}
+	},
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"arara",
+				"-v",
+				"cv_egon_geerardyn.tex"
+			],
+			"name": "Arara (main)",
+			"working_dir": "${project_path}"
+		}
+	],
+}
