@@ -19,6 +19,8 @@
 \ProcessOptions\relax
 \LoadClass[a4paper]{article}
 
+%% Version Control
+\input{vc.tex}
 
 %%%%%%%%%%
 % Colors %
