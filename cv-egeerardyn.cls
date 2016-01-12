@@ -340,10 +340,10 @@
 
 % http://tex.stackexchange.com/questions/27258/how-do-i-write-underline-text-but-with-a-dotted-line
 \newcommand{\udensdot}[1]{%
-    \tikz[baseline=(todotted.base)]{
-        \node[inner sep=1pt,outer sep=0pt,text width={}] (todotted) {\vphantom{jg}#1}; %phantom with a descender to make the line appear at a constant height across links
+    \tikz[baseline=(txt.base)]{
+        \node[inner sep=1pt,outer sep=0pt,text width={}] (txt) {\vphantom{jg}#1}; %phantom with a descender to make the line appear at a constant height across links
         %reset text width to empty to avoid inheriting this property when nested inside another tikzpicture!
-        \draw[densely dotted] (todotted.south west) -- (todotted.south east);
+        \draw[densely dotted] (txt.south west) -- (txt.south east);
     }%
 }%
 
@@ -364,6 +364,7 @@
 
 %TODO: fix vertical alignment of notes (probably with multicolumn & multirow)
 %TODO: organize different colors/fonts better
+%TODO: fix slight horizontal alignment issues in the first column (parbox vs non-parbox?)
 
 % http://tex.stackexchange.com/questions/117655/keeping-two-rows-on-one-page-using-longtable
 %% define experience and education

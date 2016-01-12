@@ -27,6 +27,7 @@ fi
 
 # Restore working directory
 git stash pop -q
+git checkout cv_egon_geerardyn.pdf
 
 # And we're done
 exit $ERRarara # pass on the error codes
