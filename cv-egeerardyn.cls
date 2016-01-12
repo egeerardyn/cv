@@ -89,8 +89,9 @@
 \newcommand{\websiteFont}{ }
 \newcommand{\profileFont}{ }
 
-\defaultfontfeatures{Mapping=tex-text}
+\defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Avenir Next}[UprightFont={* Regular},BoldFont={* Medium},BoldItalicFont={* Demi Bold}]
+\setmonofont[Scale=MatchLowercase]{Source Code Pro}
 
 
 \newcommand{\urlFormat}[1]{\color{grayVeryLight}{#1}}
@@ -100,7 +101,6 @@
 \RequirePackage{academicons}
 
 \def \@profiles {}
-
 \newcommand{\profile}[3]{\g@addto@macro\@profiles{\hlink{{#1~#2}}{#3}\hspace{1.0em}}} %icon,text,url
 \newcommand{\profileGithub}[1]{\profile{\faicon{github}}{#1}{https://github.com/#1}} %username
 \newcommand{\profileLinkedIn}[1]{\profile{\faicon{linkedin}}{#1}{https://www.linkedin.com/in/#1}} %username
@@ -111,7 +111,6 @@
 %%%%%%%%%%
 % Header %
 %%%%%%%%%%
-
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 
@@ -183,9 +182,8 @@
 % Structure %
 %%%%%%%%%%%%%
 %\RequirePackage{parskip}
-%\setlength{\parskip}{1.5em}
 \setlength{\parindent}{0cm}
-\setlength{\parskip}{1.5em plus 1.5em minus 0.25em}
+\setlength{\parskip}{1.5em plus 1.5em minus 0.5em}
 
 \renewcommand{\section}[1]{
   {%
@@ -318,9 +316,11 @@
 %%%%%%%%%%%%%%%%
 
 \ifdefined\@cv@grids
-\RequirePackage[left=1.5cm,top=1.5cm,right=1.5cm,bottom=2.5cm,showframe,nohead,showcrop]{geometry}
+  \RequirePackage[left=1.5cm,top=1.5cm,right=1.5cm,bottom=2.5cm,showframe,nohead,showcrop]{geometry}
+  \newcommand{\maybeLine}{\hline}
 \else
-\RequirePackage[left=1.5cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead]{geometry}
+  \RequirePackage[left=1.5cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead]{geometry}
+  \newcommand{\maybeLine}{ }
 \fi
 
 
@@ -353,11 +353,11 @@
 % see also awesome-cv
 \RequirePackage{tabu}
 \RequirePackage{longtable}
+\RequirePackage{multirow}
 \newcommand{\keyword}[1]{\textbf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 
-\RequirePackage{array}
-\usepackage{array}
+%\RequirePackage{array}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
@@ -369,20 +369,25 @@
 %% define experience and education
 % usage: \addJob[note]{DATERANGE}{TITLE}{COMPANY}{DESCRIPTION}
 \newcommand{\addEducation}[5][]{
-  {#2} & \jobTitle{#3} & \jobLocation{#4}\\*[0.25em]
-  \parbox{\sep}{\note{#1}} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip]
+  {#2} & \jobTitle{#3} & \jobLocation{#4}\\*[0.25em] \maybeLine
+  \parbox{\sep}{\note{#1}} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip] \maybeLine
 }
 \newcommand{\addJob}[5][]{
-  {#2} & \jobTitle{#3} & \jobLocation{#4}\\*[0.25em]
-  \parbox{\sep}{\note{#1}} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip]
+  {#2} & \jobTitle{#3} & \jobLocation{#4}\\*[0.25em] \maybeLine
+  \parbox{\sep}{\note{#1}} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip] \maybeLine
 }
 %usage: \addText{DATERANGE}{DESCRIPTION}
-\newcommand{\addText}[2]{
-  \parbox{\sep}{#1} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#2}}\\[\parskip]
+%\newcommand{\addText}[3][]{
+%  \parbox{\sep}{#2}        & \multicolumn{2}{@{}l}{\multirow{2}{*}{\parbox{5\sep}{#3}}}\\*
+%  \parbox{\sep}{\note{#1}} & & \\[\parskip]
+%}
+\newcommand{\addText}[3][]{
+  \parbox{\sep}{#2} & \multicolumn{2}{@{}l@{}}{\parbox{5\sep}{#3}}\\[\parskip] \maybeLine
 }
 \newenvironment{experience}{
   \section{experience}
-  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
+  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{3\sep}@{}R{2\sep}@{}}
+  \maybeLine
 }{%
   \end{longtabu*}
   \vspace{-2\parskip}
@@ -390,7 +395,8 @@
 
 \newenvironment{education}{
   \section{education}
-  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
+  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{3\sep}@{}R{2\sep}@{}}
+  \maybeLine
 }{%
   \end{longtabu*}
   \vspace{-2\parskip}
@@ -398,10 +404,11 @@
 
 %% define languages
 % usage: \addLanguage{LANG}{LEVEL}{Description}
-\newcommand{\addLanguage}[3]{\textbf{#1} & #2 & #3\\}
+\newcommand{\addLanguage}[3]{\textbf{#1} & #2 & #3\\ \maybeLine}
 \newenvironment{languages}{%
   \section{languages}
-  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{\sep}@{}L{4\sep}}%
+  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{\sep}@{}L{4\sep}@{}}%
+  \maybeLine
 }{%
   \end{longtabu*}%
   \vspace{-\parskip}
