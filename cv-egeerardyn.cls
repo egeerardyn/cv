@@ -116,16 +116,6 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 
-\newcommand{\rolefont}{%
-  \fontsize{14pt}{24pt}\selectfont%
-  \thinfont%
-  \color{white}%
-}
-
-\newcommand{\header}[3]{%
-  
-}
-
 \def\firstName#1{\gdef\@firstName{#1}}
 \def\lastName#1{\gdef\@lastName{#1}}
 \def\tagLine#1{\gdef\@tagLine{#1}}
@@ -144,10 +134,8 @@
 
 \renewcommand{\maketitle}{
   \begin{tikzpicture}[remember picture,overlay]
-    \ifdefined\@cv@grids
-    \draw[step=\sep,color=black,densely dotted] ($(current page.north west) + (1.5cm,-3cm)$) grid ($(current page.south east) - (1.5cm,-2cm)$);
-    \fi
-    \node [rectangle, fill=fillheader,color=fillheader, anchor=north, minimum width=\paperwidth, minimum height=5cm] (box) at (current page.north){};
+    
+    \node [rectangle, fill=fillheader,color=fillheader,anchor=north, minimum width=\paperwidth, minimum height=5cm] (box) at (current page.north){};
     \node [anchor=north] (name) at ($(current page.north) - (\sep,1.5cm)$) {%
       \fontsize{36pt}{72pt}\color{header}%
       {\firstNameFont \@firstName}$\,${\lastNameFont \@lastName}
@@ -162,32 +150,46 @@
     };
     \node [anchor=north west,align=right,text width=2\sep,inner sep=1mm] (personalia) at ($(current page.north) + (\sep,-1.5cm)$) {%
       \fontsize{11pt}{16pt}\color{white}%
-      \addressFont \@address\\
-      \phoneFont \@phone\\
-      \emailFont \href{mailto:\@email}{\@email}\\
-      \websiteFont \href{https://\@website}{\@website}\\
-      born \@birthDate\ (\@nationality)\\
+      \ifdefined\@address%
+        \addressFont \@address\\
+      \fi%
+      \ifdefined\@phone
+        \phoneFont \@phone\\
+      \fi
+      \ifdefined\@email
+        \emailFont \href{mailto:\@email}{\@email}\\
+      \fi
+      \ifdefined\@website
+        \websiteFont \href{https://\@website}{\@website}\\
+      \fi
+      \ifdefined\@birthDate
+        \textcolor{grayVeryLight}{born \@birthDate\ (\@nationality)}\\
+      \fi
     };
 
-    \draw[color=accentcolor,line width=2pt] (box.south west) -- (box.south east);
+    \draw[color=accentcolor,line width=2.5pt] (box.south west) -- (box.south east);
+    \ifdefined\@cv@grids
+    \draw[step=\sep,color=black,densely dotted,opacity=0.5] ($(current page.north west) + (1.5cm,-3cm)$) grid ($(current page.south east) - (1.5cm,-2cm)$);
+    \fi
   \end{tikzpicture}
-  \vspace{17\parskip}
+  \vspace{3cm}
 }
 
 %%%%%%%%%%%%%
 % Structure %
 %%%%%%%%%%%%%
-\RequirePackage{parskip}
-
-\newcounter{colorCounter}
+%\RequirePackage{parskip}
+%\setlength{\parskip}{1.5em}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1.5em plus 1.5em minus 0.25em}
 
 \renewcommand{\section}[1]{
-  \par\vspace{\parskip}
+  \par
   {%
     \LARGE\headingfont\color{headercolor}%
     \color{accentcolor} #1%
   }
-  \par\vspace{\parskip}
+  \par
 }
 \newcommand{\sectionHidden}[1]{}
 
@@ -197,50 +199,6 @@
   \par\vspace{.25\parskip}%
 }
 
-%\pagestyle{empty}
-
-
-%%%%%%%%%%%%%%%%%%%%
-% List environment %
-%%%%%%%%%%%%%%%%%%%%
-
-\setlength{\tabcolsep}{0pt}
-\newenvironment{entrylist}{%
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
-}{%
-  \end{tabular*}
-}
-\renewcommand{\bfseries}{\headingfont\color{headercolor}}
-\newcommand{\entry}[4]{%
-  #1&\parbox[t]{11.8cm}{%
-    \textbf{#2}%
-    \hfill%
-    {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
-    #4\vspace{\parsep}%
-  }\\}
-
-
-%%%%%%%%%%%%%%
-% Side block %
-%%%%%%%%%%%%%%
-
-\RequirePackage[absolute,overlay]{textpos}
-\setlength{\TPHorizModule}{1cm}
-\setlength{\TPVertModule}{1cm}
-\newenvironment{aside}{%
-  \let\oldsection\section
-  \renewcommand{\section}[1]{
-    \par\vspace{\baselineskip}{\Large\headingfont\color{headercolor} ##1}
-  }
-  \begin{textblock}{3.6}(1.5, 4.33)
-  \begin{flushright}
-  \obeycr
-}{%
-  \restorecr
-  \end{flushright}
-  \end{textblock}
-  \let\section\oldsection
-}
 
 %%%%%%%%%%%%%%%%
 % Bibliography %
@@ -356,8 +314,78 @@
 %%%%%%%%%%%%%%%%
 
 \ifdefined\@cv@grids
-\RequirePackage[left=1.5cm,top=1.5cm,right=1.5cm,bottom=2.5cm,nohead,nofoot,showframe,showcrop]{geometry}
+\RequirePackage[left=1.5cm,top=1.5cm,right=1.5cm,bottom=2.5cm,showframe,nohead,nofoot,showcrop]{geometry}
 \else
 \RequirePackage[left=1.5cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
 \fi
+
+
+%% HEADER
+\RequirePackage{lastpage} %http://tex.stackexchange.com/questions/34149/bibtex-references-not-compiling-because-of-lastpage-package
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\hspace{\sep}\textcolor{grayBase} {\VCDateISO} {\thinfont (\VCRevision)}}
+\cfoot{}
+\rfoot{\textcolor{grayBase} \@firstName~{{\@lastName}} -- {{\thepage}}/\pageref{LastPage}}
+
 \RequirePackage{hyperref}
+
+%% Custom commands
+% see also awesome-cv
+
+\newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\RequirePackage{array}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+%TODO: fix vertical alignment of notes
+%TODO: double-check vertical skip difference between experiences and education
+%TODO: organize different colors/fonts
+%TODO: add link definition
+
+%% define experience and education
+% usage: \addJob[note]{DATERANGE}{TITLE}{COMPANY}{DESCRIPTION}
+\newcommand{\addEducation}[5][]{
+  {#2} & \textbf{#3} & {#4}\\[0.25em]
+  \parbox{\sep}{#1} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[3em]
+}
+\newcommand{\addJob}[5][]{
+  {#2} & \textbf{#3} & {#4}\\[0.25em]
+  \parbox{\sep}{#1} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip]
+}
+%usage: \addText{DATERANGE}{DESCRIPTION}
+\newcommand{\addText}[2]{
+  \parbox{\sep}{#1} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#2}}\\[\parskip]
+}
+\newenvironment{experience}{
+  \section{experience}
+  \begin{tabular*}{\columnwidth}{@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
+}{%
+  \end{tabular*}
+}
+
+\newenvironment{education}{
+  \section{education}
+  \begin{tabular*}{\columnwidth}{@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
+}{%
+  \end{tabular*}
+}
+
+%% define languages
+% usage: \addLanguage{LANG}{LEVEL}{Description}
+\newcommand{\addLanguage}[3]{\textbf{#1} & #2 & #3\\}
+\newenvironment{languages}{%
+  \section{languages}
+  \begin{tabular*}{\columnwidth}{@{}L{\sep}@{}L{\sep}@{}L{4\sep}}%
+}{%
+  \end{tabular*}%
+}
+
+
