@@ -10,21 +10,24 @@
 #  - http://www.davidpashley.com/articles/writing-robust-shell-scripts/
 #  - http://stackoverflow.com/questions/13998941/how-can-i-propagate-an-exit-status-from-expect-to-its-parent-bash-script
 #  - http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-8.html
+#  - http://codeinthehole.com/writing/tips-for-using-a-git-pre-commit-hook/
 
-function exitIfError {
-    # pass "$?" as argument: i.e. the exit status of the last call
-    if [ "$1" -ne 0 ]; then
-        exit $1; # pass along the error code
-    fi
-}
+# Make sure working directory is clean
+git stash -q --keep-index
 
-# Compile files
+# Try to compile CV
+echo $PWD
 arara cv_egon_geerardyn.tex
-exitIfError $?
+ERRarara=$?  #store the exit code for readability
 
 # Add freshly generated PDF to git
-git add -f cv_egon_geerardyn.pdf
+if [ "$ERRarara" -eq 0 ]; then
+    git add -f cv_egon_geerardyn.pdf
+fi
+
+# Restore working directory
+git stash pop -q
 
 # And we're done
-exit 0
+exit $ERRarara # pass on the error codes
 
