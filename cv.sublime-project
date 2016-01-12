@@ -1,17 +1,4 @@
 {
-	"folders":
-	[
-		{
-			"path": ".",
-			"file_exclude_patterns":["*.out","*.synctex*","*.awk","*.bcf","*.xml","*.aux","*.log"]
-		}
-	],
-	"settings":
-	{
-		"FuzzyFilePath":
-		{
-		}
-	},
 	"build_systems":
 	[
 		{
@@ -25,4 +12,26 @@
 			"working_dir": "${project_path}"
 		}
 	],
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.out",
+				"*.synctex*",
+				"*.awk",
+				"*.bcf",
+				"*.xml",
+				"*.aux",
+				"*.log"
+			],
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"FuzzyFilePath":
+		{
+		}
+	}
 }

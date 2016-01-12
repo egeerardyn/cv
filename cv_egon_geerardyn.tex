@@ -3,7 +3,7 @@
 % arara: xelatex: { shell : yes, synctex : yes, options : "-8bit" }
 % arara: xelatex: { shell : yes, synctex : yes, options : "-8bit" }
 
-\documentclass[]{cv-egeerardyn}
+\documentclass{cv-egeerardyn}
 
 \usepackage{xspace}
 
@@ -29,21 +29,30 @@
 \begin{document}
 \maketitle
 
-\newcommand{\VUB}{Vrije Universiteit Brussel}
-\newcommand{\TUe}{Technische Universiteit Eindhoven}
-\newcommand{\Stanford}{Stanford}
-\newcommand{\EPFL}{EPFL}
-\newcommand{\CST}{Control System Technology}
+\newcommand{\VUB}{\hlink{Vrije Universiteit Brussel}{https://www.vub.ac.be/}}
+\newcommand{\TUe}{\hlink{Technische Universiteit Eindhoven}{https://www.tue.nl}}
+\newcommand{\Stanford}{\hlink{Stanford}{https://stanford.edu}}
+\newcommand{\EPFL}{\hlink{EPFL}{https://epfl.ch}}
+\newcommand{\CST}{\hlink{Control System Technology}{https://www.tue.nl/en/university/departments/mechanical-engineering/research/research-groups/control-systems-technology/}}
 \newcommand{\TikZ}{\mbox{Ti\emph{k}Z}\xspace}
-\newcommand{\PK}{Polytechnische Kring}
-\newcommand{\ELEC}{ELEC}
+\newcommand{\PK}{\hlink{Polytechnische Kring}{https://www.pk.be}}
+\newcommand{\ELEC}{\hlink{ELEC}{http://www.vubirelec.be} (\VUB)}
 
 \begin{education}
-  \addEducation[prospect\\ June 2016]{2011 -- 2016}{PhD Electrical Engineering}{\VUB}
-  {In my research on user-friendly identification of linear systems, I gained expertise in system identification and measurements. During my two-month stay at the \CST{} group at the \TUe, I improved my proficiency in robust control and applied my research in the field.}
+  \addEducation%
+  [prospect\\ June 2016]
+  {2011 -- 2016}
+  {PhD Electrical Engineering (dr.)}{\VUB}
+  {In my research on user-friendly identification of linear systems, I gained expertise in \keyword{system identification} and \keyword{measurements}. During my two-month stay at the \CST{} group at the \TUe, I improved my proficiency in \keyword{robust control} and applied my research in the field.
+  Promotors: Johan Schoukens and Tom Oomen (TU/e).}
 
-  \addEducation{2006 -- 2011}{BSc \& MSc Electrical Engineering and IT (ir.)}{\VUB}
-  {In my thesis ``A Simulation Method for Pinpointing the Dominant Nonlinear Contributors in CMOS Circuits'' I wrote a tool in \keyword{ANTLR}, \keyword{Java} and \keyword{MATLAB} that performs a labor-intensive Volterra analysis on electrical circuits. For this work I received the IMEC award for best master thesis at the VUB.}
+  \addEducation%
+  {2006 -- 2011}
+  {BSc \& MSc Engineering Science: Electronics  and IT (ir.)}
+  {\VUB}
+  {In my thesis ``A Simulation Method for Pinpointing the Dominant Nonlinear Contributors in CMOS Circuits'' I wrote a tool in \keyword{ANTLR}, \keyword{Java} and \keyword{MATLAB} that performs a labor-intensive Volterra analysis on electrical circuits. 
+  Promotors: Piet Wambacq and Gerd Vandersteen.\\
+  For this work I received the \keyword{\hlink{IMEC}{http://www.imec.be} award} for best master thesis at the VUB.}
 
   \addText{2011 -- now}{I continually strive to perfect my abilities by taking courses such as 
   \keyword{LabView Core 2}
@@ -52,26 +61,28 @@
   hence I became a \keyword{Certified LabView Associate Developer}
   in 2014. 
   I have successfully completed online courses such as 
-  {Convex Optimization}, 
-  Functional Programming with Scala, 
-  Machine Learning and 
-  Introduction to Databases that were taught by experts from 
+  \hlink{Convex Optimization}{https://lagunita.stanford.edu/courses/Engineering/CVX101/Winter2014/about}, 
+  \hlink{Functional Programming with Scala}{https://www.coursera.org/course/progfun}, 
+  \hlink{Machine Learning}{https://www.coursera.org/learn/machine-learning} and 
+  \hlink{Databases}{https://lagunita.stanford.edu/courses/Home/Databases/Engineering/about}
+  that were taught by experts from 
   \Stanford{} and 
   \EPFL{}.}
 
 \end{education}
 
 \begin{experience}
-  \addJob{2012 -- now}{Major contributor and maintainer (since 2015)}{github:matlab2tikz}{
-  I maintain the open-source \code{matlab2tikz} program that converts \keyword{MATLAB}  figures to \keyword{\TikZ} (\keyword{\LaTeX}) code.
-  This program is one of the ten most-downloaded programs for MATLAB.
+  \addJob{2012 -- now}{Major contributor and maintainer (since 2015)}{\hlink{ github:matlab2tikz}{https://github.com/matlab2tikz/matlab2tikz/}}{
+  I maintain the open-source program \code{matlab2tikz} that converts \keyword{MATLAB}/\keyword{Octave} figures to \keyword{\TikZ} (\keyword{\LaTeX}) code.
+  This program is one of the \hlink{most-downloaded}{http://www.mathworks.com/matlabcentral/fileexchange/?sort=downloads\_desc\&term=type\%3A\%22Function\%22} programs on FileExchange.\\
+  I give guidance to half a dozen volunteers and keep track of the codebase using \keyword{git} and \keyword{Jenkins}.
   }
 
-  \addJob[summers]{2009 -- 2011}{Engineering summer jobs}{\ELEC (\VUB)}{
-For the system identification and electrical measurements courses, I made course notes, lab instructions and measurement set-ups using \keyword{LabView} and \keyword{NI Elvis II}.}
+  \addJob{2009 -- 2011}{Engineering summer jobs}{\ELEC}{
+For the statistics, system theory, system identification, and courses, I made course notes, lab instructions, and measurement set-ups using \keyword{LyX}, \keyword{LabView} and \keyword{NI Elvis II}.}
 
   \addJob{2007 -- 2009}{Web master and server admin}{\PK}{
-  For my engineering fraternity, I updated the website to \keyword{PHP} / \keyword{Joomla} and helped to maintain the \keyword{Gentoo Linux} web server running \keyword{Apache}.
+  For my engineering fraternity, I updated the website to \keyword{Joomla} and helped to maintain the \keyword{Gentoo Linux} web server running \keyword{Apache}, \keyword{MySQL} and \keyword{PHP}.
   }
 \end{experience}
 
@@ -80,10 +91,10 @@ For the system identification and electrical measurements courses, I made course
   \addLanguage{English}{Advanced}{Daily use in an academic setting.}
   \addLanguage{French}{Intermediate}{I have been living in Ixelles (Brussels) since 2013.}
 \end{languages}
-\section{competences}
 
-For my everyday work, I rely on \keyword{Mac OS X}, \keyword{MATLAB}, \keyword{SimuLink}, \keyword{LabView}, \keyword{Sage}, \keyword{LaTeX} and \keyword{git}. 
-In previous projects, I have used \keyword{Python}, \keyword{ANTLR}, \keyword{Scala}, \keyword{Java}, \keyword{Delphi}, \keyword{assembly} and \keyword{VHDL} amongst others. 
+\section{skills}
+For my everyday work, I rely on \keyword{Mac OS X}, \keyword{Linux}, \keyword{MATLAB}, \keyword{SimuLink}, \keyword{LabView}, \keyword{Sage}, \keyword{LaTeX} and, \keyword{git}. 
+In previous projects, I have used \keyword{Python}, \keyword{ANTLR}, \keyword{Scala}, \keyword{Java}, \keyword{Delphi}, \keyword{assembly} and \keyword{VHDL} amongst others.\\
 As a teaching assistant, I taught \keyword{C} for \keyword{microcontroller} programming for electronics and control labs.
 
 

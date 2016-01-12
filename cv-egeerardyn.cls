@@ -32,21 +32,13 @@
 
 \definecolor{myRed}{cmyk}{0.15,1,1,0}
 \definecolor{grayBase}{cmyk}{0.80,0.75,0.71,0.38}
-\definecolor{grayBG1}{RGB}{55,65,75}
-\definecolor{grayBG2}{RGB}{80,90,95}
+\definecolor{grayDark}{RGB}{55,65,75}
+\definecolor{grayBG}{RGB}{80,90,95}
 \definecolor{grayLight}{RGB}{120,120,120}
 \definecolor{grayVeryLight}{RGB}{225,225,225}
 \definecolor{accent}{cmyk}{1,0,0,0}
-%\definecolor{base03}{Lab}{15,-12,-12}
 \definecolor{base03}{RGB}{4,32,41}
 \definecolor{accentLight}{cmyk}{0.6,0,0,0}
-
-\definecolor{accentcolor}{named}{accent} %TODO: remove
-\definecolor{darkgray}{named}{grayBG2}%TODO: remove
-\definecolor{gray}{named}{grayBase}%TODO: remove
-\definecolor{lightgray}{named}{grayLight}%TODO: remove
-
-\definecolor{tagline}{named}{accentLight}
 
 \definecolor{green}{HTML}{C2E15F}
 \definecolor{orange}{HTML}{FDA333}
@@ -54,21 +46,27 @@
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
 
-\ifdefined\@cv@print
-  \colorlet{green}{gray}
-  \colorlet{orange}{gray}
-  \colorlet{purple}{gray}
-  \colorlet{red}{gray}
-  \colorlet{blue}{gray}
-  \colorlet{fillheader}{white}
-  \colorlet{header}{gray}
-\else
-  \colorlet{fillheader}{grayBG2}
-  \colorlet{header}{white}
-\fi
-\colorlet{textcolor}{gray}
-\colorlet{headercolor}{gray}
 
+\colorlet{footer}{grayLight}
+\colorlet{headerline}{accent}
+\colorlet{headings}{accent}
+\ifdefined\@cv@print
+  \colorlet{tagline}{accent}
+  \colorlet{fillheader}{grayVeryLight}
+  \colorlet{header}{grayDark}
+  \colorlet{personalia}{header}
+  \colorlet{profiles}{gray}
+\else
+  \colorlet{tagline}{accentLight}
+  \colorlet{fillheader}{grayBG}
+  \colorlet{header}{white}
+  \colorlet{personalia}{header}
+  \colorlet{profiles}{grayVeryLight}
+\fi
+\colorlet{phone}{personalia}
+\colorlet{address}{personalia}
+\colorlet{email}{personalia}
+\colorlet{birth}{profiles}
 
 %%%%%%%%%
 % Fonts %
@@ -77,22 +75,23 @@
 \RequirePackage[quiet]{fontspec}
 \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 
+
 \newfontfamily\bodyfont[]{Avenir Next}
 \newfontfamily\thinfont[]{Avenir Next Ultra Light}
 \newfontfamily\headingfont[]{Avenir Next Demi Bold}
 
-\newfontfamily\firstNameFont[]{Avenir Next}
-\newfontfamily\lastNameFont[]{Avenir Next Medium}
-\newfontfamily\tagFont[]{Avenir Next}
-\newfontfamily\profileFont[]{Avenir Next}
-\newfontfamily\phoneFont[]{Avenir Next}
-\newfontfamily\emailFont[]{Avenir Next}
-\newfontfamily\addressFont[]{Avenir Next}
-\newfontfamily\websiteFont[]{Avenir Next}
+\newcommand{\firstNameFont}{}
+\newcommand{\lastNameFont}{\bfseries}
+\newcommand{\tagFont}{\textbf}
+\newcommand{\phoneFont}{ }
+\newcommand{\emailFont}{ }
+\newcommand{\addressFont}{ }
+\newcommand{\websiteFont}{ }
+\newcommand{\profileFont}{ }
 
-%TODO: add footer: VC.tex, Egon Geerardyn n/N
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Mapping=tex-text, Color=textcolor]{Avenir Next Regular}
+\setmainfont{Avenir Next}[UprightFont={* Regular},BoldFont={* Medium},BoldItalicFont={* Demi Bold}]
+
 
 \newcommand{\urlFormat}[1]{\color{grayVeryLight}{#1}}
 
@@ -102,7 +101,7 @@
 
 \def \@profiles {}
 
-\newcommand{\profile}[3]{\g@addto@macro\@profiles{\href{#3}{{#1~#2}}\hspace{1.0em}}} %icon,text,url
+\newcommand{\profile}[3]{\g@addto@macro\@profiles{\hlink{{#1~#2}}{#3}\hspace{1.0em}}} %icon,text,url
 \newcommand{\profileGithub}[1]{\profile{\faicon{github}}{#1}{https://github.com/#1}} %username
 \newcommand{\profileLinkedIn}[1]{\profile{\faicon{linkedin}}{#1}{https://www.linkedin.com/in/#1}} %username
 \newcommand{\profileFacebook}[1]{\profile{\faicon{facebook}}{#1}{https://www.facebook.com/#1}}
@@ -130,50 +129,55 @@
 
 \newlength{\sep}
 \setlength{\sep}{0.1666666\columnwidth}
-\setlength{\sep}{3cm}
+\setlength{\sep}{3cm} % this is approx 1/6 \columnwidth
 
 \renewcommand{\maketitle}{
   \begin{tikzpicture}[remember picture,overlay]
     
     \node [rectangle, fill=fillheader,color=fillheader,anchor=north, minimum width=\paperwidth, minimum height=5cm] (box) at (current page.north){};
     \node [anchor=north] (name) at ($(current page.north) - (\sep,1.5cm)$) {%
-      \fontsize{36pt}{72pt}\color{header}%
-      {\firstNameFont \@firstName}$\,${\lastNameFont \@lastName}
+      {\fontsize{36pt}{72pt}\color{header}\textrm
+      {\firstNameFont \@firstName}$\,${\lastNameFont \@lastName}}
     };
     \node [anchor=north] (tag) at (name.south) {%
-      \fontsize{14pt}{20pt}\color{tagline}%
-      \tagFont \@tagLine%
+      {\fontsize{14pt}{20pt}\color{tagline}\tagFont%
+       \@tagLine}
     };
     \node [anchor=north] (profiles) at (tag.south) {%
-      \fontsize{11pt}{16pt}\color{grayVeryLight}%
+      \fontsize{11pt}{16pt}\color{profiles}\textrm%
       \profileFont \@profiles
     };
     \node [anchor=north west,align=right,text width=2\sep,inner sep=1mm] (personalia) at ($(current page.north) + (\sep,-1.5cm)$) {%
-      \fontsize{11pt}{16pt}\color{white}%
+      \fontsize{11pt}{16pt}\color{personalia}%
+      \bodyfont
       \ifdefined\@address%
-        \addressFont \@address\\
+        \addressFont\color{address} \@address\\
       \fi%
       \ifdefined\@phone
-        \phoneFont \@phone\\
+        \phoneFont\color{phone} \@phone\\
       \fi
       \ifdefined\@email
-        \emailFont \href{mailto:\@email}{\@email}\\
+        \emailFont\color{email} \hlink{\@email}{mailto:\@email}\\
       \fi
       \ifdefined\@website
-        \websiteFont \href{https://\@website}{\@website}\\
+        \websiteFont\color{website} \hlink{\@website}{http://\@website}\\
       \fi
       \ifdefined\@birthDate
-        \textcolor{grayVeryLight}{born \@birthDate\ (\@nationality)}\\
+        \textcolor{birth}{born \@birthDate\ (\@nationality)}\\
       \fi
     };
 
-    \draw[color=accentcolor,line width=2.5pt] (box.south west) -- (box.south east);
+    \draw[color=headerline,line width=2.5pt] (box.south west) -- (box.south east);
     \ifdefined\@cv@grids
-    \draw[step=\sep,color=black,densely dotted,opacity=0.5] ($(current page.north west) + (1.5cm,-3cm)$) grid ($(current page.south east) - (1.5cm,-2cm)$);
+      \draw[step=\sep,color=black,densely dotted,opacity=0.5] ($(current page.north west) + (1.5cm,-3cm)$) grid ($(current page.south east) - (1.5cm,-2cm)$);
     \fi
   \end{tikzpicture}
-  \vspace{3cm}
+  \vspace{2.25cm}
 }
+
+\newcommand{\jobTitle}[1]{\textbf{\emph{#1}}}
+\newcommand{\note}[1]{\color{grayLight}#1}
+\newcommand{\jobLocation}[1]{\color{grayLight}#1}
 
 %%%%%%%%%%%%%
 % Structure %
@@ -184,18 +188,18 @@
 \setlength{\parskip}{1.5em plus 1.5em minus 0.25em}
 
 \renewcommand{\section}[1]{
-  \par
   {%
-    \LARGE\headingfont\color{headercolor}%
-    \color{accentcolor} #1%
+    \par%
+    \LARGE\headingfont%
+    \color{headings} #1%
+    \par%
   }
-  \par
 }
 \newcommand{\sectionHidden}[1]{}
 
 \renewcommand{\subsection}[2]{
   \par\vspace{.5\parskip}%
-  \Large\headingfont\color{headercolor} #2%
+  \Large\headingfont\color{headings} #2%
   \par\vspace{.25\parskip}%
 }
 
@@ -314,9 +318,9 @@
 %%%%%%%%%%%%%%%%
 
 \ifdefined\@cv@grids
-\RequirePackage[left=1.5cm,top=1.5cm,right=1.5cm,bottom=2.5cm,showframe,nohead,nofoot,showcrop]{geometry}
+\RequirePackage[left=1.5cm,top=1.5cm,right=1.5cm,bottom=2.5cm,showframe,nohead,showcrop]{geometry}
 \else
-\RequirePackage[left=1.5cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
+\RequirePackage[left=1.5cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead]{geometry}
 \fi
 
 
@@ -324,18 +328,31 @@
 \RequirePackage{lastpage} %http://tex.stackexchange.com/questions/34149/bibtex-references-not-compiling-because-of-lastpage-package
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
 \lhead{}
 \chead{}
 \rhead{}
-\lfoot{\hspace{\sep}\textcolor{grayBase} {\VCDateISO} {\thinfont (\VCRevision)}}
+\lfoot{\hspace{\sep}\textcolor{footer} {\VCDateISO} {\thinfont (\VCRevision)}}
 \cfoot{}
-\rfoot{\textcolor{grayBase} \@firstName~{{\@lastName}} -- {{\thepage}}/\pageref{LastPage}}
+\rfoot{\textcolor{footer}{CV --- \@firstName~\textbf{\@lastName} --- \textbf{\thepage}/\pageref{LastPage}}}
 
 \RequirePackage{hyperref}
 
+% http://tex.stackexchange.com/questions/27258/how-do-i-write-underline-text-but-with-a-dotted-line
+\newcommand{\udensdot}[1]{%
+    \tikz[baseline=(todotted.base)]{
+        \node[inner sep=1pt,outer sep=0pt,text width={}] (todotted) {\vphantom{jg}#1}; %phantom with a descender to make the line appear at a constant height across links
+        %reset text width to empty to avoid inheriting this property when nested inside another tikzpicture!
+        \draw[densely dotted] (todotted.south west) -- (todotted.south east);
+    }%
+}%
+
+\newcommand{\hlink}[2]{\udensdot{\href{#2}{#1}}}
+
 %% Custom commands
 % see also awesome-cv
-
+\RequirePackage{tabu}
+\RequirePackage{longtable}
 \newcommand{\keyword}[1]{\textbf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 
@@ -345,20 +362,19 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
-%TODO: fix vertical alignment of notes
-%TODO: double-check vertical skip difference between experiences and education
-%TODO: organize different colors/fonts
-%TODO: add link definition
+%TODO: fix vertical alignment of notes (probably with multicolumn & multirow)
+%TODO: organize different colors/fonts better
 
+% http://tex.stackexchange.com/questions/117655/keeping-two-rows-on-one-page-using-longtable
 %% define experience and education
 % usage: \addJob[note]{DATERANGE}{TITLE}{COMPANY}{DESCRIPTION}
 \newcommand{\addEducation}[5][]{
-  {#2} & \textbf{#3} & {#4}\\[0.25em]
-  \parbox{\sep}{#1} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[3em]
+  {#2} & \jobTitle{#3} & \jobLocation{#4}\\*[0.25em]
+  \parbox{\sep}{\note{#1}} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip]
 }
 \newcommand{\addJob}[5][]{
-  {#2} & \textbf{#3} & {#4}\\[0.25em]
-  \parbox{\sep}{#1} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip]
+  {#2} & \jobTitle{#3} & \jobLocation{#4}\\*[0.25em]
+  \parbox{\sep}{\note{#1}} & \multicolumn{2}{@{}l}{\parbox{5\sep}{#5}}\\[\parskip]
 }
 %usage: \addText{DATERANGE}{DESCRIPTION}
 \newcommand{\addText}[2]{
@@ -366,16 +382,18 @@
 }
 \newenvironment{experience}{
   \section{experience}
-  \begin{tabular*}{\columnwidth}{@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
+  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
 }{%
-  \end{tabular*}
+  \end{longtabu*}
+  \vspace{-2\parskip}
 }
 
 \newenvironment{education}{
   \section{education}
-  \begin{tabular*}{\columnwidth}{@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
+  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{3\sep}@{}R{2\sep}}
 }{%
-  \end{tabular*}
+  \end{longtabu*}
+  \vspace{-2\parskip}
 }
 
 %% define languages
@@ -383,9 +401,10 @@
 \newcommand{\addLanguage}[3]{\textbf{#1} & #2 & #3\\}
 \newenvironment{languages}{%
   \section{languages}
-  \begin{tabular*}{\columnwidth}{@{}L{\sep}@{}L{\sep}@{}L{4\sep}}%
+  \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{\sep}@{}L{4\sep}}%
 }{%
-  \end{tabular*}%
+  \end{longtabu*}%
+  \vspace{-\parskip}
 }
 
 
