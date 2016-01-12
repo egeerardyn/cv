@@ -13,6 +13,9 @@
 #  - http://codeinthehole.com/writing/tips-for-using-a-git-pre-commit-hook/
 
 # Make sure working directory is clean
+# and the index does not have the output PDF (chance for conflicts!)
+git unstage cv_egon_geerardyn.pdf
+git checkout HEAD cv_egon_geerardyn.pdf
 git stash -q --keep-index
 
 # Try to compile CV
