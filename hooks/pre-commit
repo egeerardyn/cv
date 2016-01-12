@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Pre-commit script that builds the PDF file
+#
+# To install:
+#  ln -s hooks/pre-comit .git/hooks/pre-commit
+
+arara cv_egon_geerardyn.tex
+#TODO: check output status and set error code when it fails
+git add -f cv_egon_geerardyn.pdf
+exit 0
+
