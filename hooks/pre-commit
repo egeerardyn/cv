@@ -4,9 +4,27 @@
 #
 # To install:
 #  ln -s hooks/pre-comit .git/hooks/pre-commit
+#
+# Resources:
+#  - http://stackoverflow.com/questions/2870992/automatic-exit-from-bash-shell-script-on-error
+#  - http://www.davidpashley.com/articles/writing-robust-shell-scripts/
+#  - http://stackoverflow.com/questions/13998941/how-can-i-propagate-an-exit-status-from-expect-to-its-parent-bash-script
+#  - http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-8.html
 
+function exitIfError {
+    # pass "$?" as argument: i.e. the exit status of the last call
+    if [ "$1" -ne 0 ]; then
+        exit $1; # pass along the error code
+    fi
+}
+
+# Compile files
 arara cv_egon_geerardyn.tex
-#TODO: check output status and set error code when it fails
+exitIfError $?
+
+# Add freshly generated PDF to git
 git add -f cv_egon_geerardyn.pdf
+
+# And we're done
 exit 0
 
