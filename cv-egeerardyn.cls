@@ -332,7 +332,7 @@
 \lhead{}
 \chead{}
 \rhead{}
-\lfoot{\hspace{\sep}\textcolor{footer} {\VCDateISO} {\thinfont (\VCRevision)}}
+\lfoot{\hspace{\sep}\textcolor{footer} {\VCDateISO} {\thinfont\color{grayVeryLight}(\VCRevision)}}
 \cfoot{}
 \rfoot{\textcolor{footer}{CV --- \@firstName~\textbf{\@lastName} --- \textbf{\thepage}/\pageref{LastPage}}}
 
