@@ -221,9 +221,50 @@ backend=biber]{biblatex}
 
 
 % http://tex.stackexchange.com/questions/49140/get-full-name-twice-in-bibliography
+
 % http://tex.stackexchange.com/questions/40798/how-do-i-get-et-al-to-appear-in-italics-when-using-textcite-or-citeauthor-w
+\renewbibmacro*{name:andothers}{% Based on name:andothers from biblatex.def
+  \ifboolexpr{
+    test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+    and
+    test \ifmorenames
+  }
+    {\ifnumgreater{\value{liststop}}{1}
+       {\finalandcomma}
+       {}%
+     \andothersdelim\bibstring[\emph]{andothers}}
+    {}}
 
+% http://tex.stackexchange.com/questions/5660/redundancy-in-bib-file-conditionally-suppress-url-if-same-as-doi
+% do not show URL if there is a DOI
+\renewbibmacro*{doi+eprint+url}{%
+  \iftoggle{bbx:doi}
+    {
+     \printfield{doi} 
+    }{}%
+  \newunit\newblock
+  \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}
+    {}%
+  \newunit\newblock
+  \iftoggle{bbx:url}
+  {
+   \iffieldundef{doi}{\usebibmacro{url+urldate}}{} 
+  }
+  {}
+}
 
+% http://tex.stackexchange.com/questions/19105/how-can-i-put-more-space-between-bibliography-entries-biblatex
+\setlength{\bibitemsep}{1em}
+
+% http://tex.stackexchange.com/questions/18664/underline-my-name-in-the-bibliography
+\DeclareNameFormat{author}{%
+\ifthenelse{\equal{#1}{Geerardyn}}%
+    {\textbf{\ifblank{#3}{}{#3\space}#1}}%
+    {\ifblank{#3}{}{#3\space}\ifblank{#5}{}{#5\space}#1}%
+\ifthenelse{\value{listcount}<\value{liststop}}%
+    {\addcomma\space}
+    {}}
 
 %%%%%%%%%%%%%%%%
 % Other tweaks %
@@ -271,7 +312,6 @@ backend=biber]{biblatex}
 \newcommand{\keyword}[1]{\textbf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 
-%\RequirePackage{array}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
@@ -332,17 +372,15 @@ backend=biber]{biblatex}
 
 
 %% 
-\newcommand{\addPublication}[1]{\item \fullcite{#1}}
-\newcommand{\publicationType}[1]{\item[] \textbf{#1}}
+\newcommand{\publicationType}[1]{{\textcolor{accent} {\textbf{#1}}} & \\}
+\newcommand{\addPublication}[1]{& \fullcite{#1} \\[\parskip]}
 \newenvironment{publications}[0]{%
-% \begin{refsection}
 % http://tex.stackexchange.com/questions/38580/displaying-selected-bibliographic-items-in-the-body-of-the-text
 % http://tex.stackexchange.com/questions/126226/how-do-i-instruct-fullcite-to-use-maxbibnames-rather-than-maxcitenames
 
 % http://tex.stackexchange.com/questions/18664/underline-my-name-in-the-bibliography
 \section{publications}
-\begin{itemize}
+\begin{longtabu*} to \columnwidth{@{}L{\sep}@{}L{5\sep}@{}}%
 }{%
-\end{itemize}
-% \end{refsection}
+\end{longtabu*}
 }
