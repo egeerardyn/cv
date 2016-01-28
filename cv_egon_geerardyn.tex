@@ -1,9 +1,12 @@
 %% arara: clean: { files: [cv_egon_geerardyn.aux, cv_egon_geerardyn.bbl, phdthesis.acn, phdthesis.acr, cv_egon_geerardyn.out, cv_egon_geerardyn.blg, cv_egon_geerardyn.log, cv_egon_geerardyn.run.xml, cv_egon_geerardyn.bcf] }
 % arara: vc
 % arara: xelatex: { shell : yes, synctex : yes, options : "-8bit" }
+% arara: biber
 % arara: xelatex: { shell : yes, synctex : yes, options : "-8bit" }
 
 \documentclass{cv-egeerardyn}
+
+\addbibresource{biblio/ownWork.bib}
 
 \usepackage{xspace}
 
@@ -97,6 +100,23 @@ For the statistics, system theory, system identification, and courses, I made co
 For my everyday work, I rely on \keyword{Mac OS X}, \keyword{Linux}, \keyword{MATLAB}, \keyword{SimuLink}, \keyword{LabView}, \keyword{Sage}, \keyword{LaTeX} and, \keyword{git}. 
 In previous projects, I have used \keyword{Python}, \keyword{ANTLR}, \keyword{Scala}, \keyword{Java}, \keyword{Delphi}, \keyword{assembly} and \keyword{VHDL} amongst others.\\
 As a teaching assistant, I taught \keyword{C} for \keyword{microcontroller} programming for electronics and control labs.
+
+
+\begin{publications}
+  \publicationType{Peer-reviewed Journals}
+  \addPublication{Geerardyn2015TIM}
+  \addPublication{vanBerkel2014Automatica}
+  \addPublication{Lumori2014TIM}
+  \addPublication{Geerardyn2013TIM}
+
+ \publicationType{International Conferences}
+  \addPublication{Voorhoeve2015SYSID}
+  \addPublication{Geerardyn2014IFAC}
+  \addPublication{Geerardyn2014ISMA}
+  \addPublication{Cooman2012SMACD}
+  \addPublication{Larsson2012SYSID}
+  \addPublication{Geerardyn2012IMTC}
+\end{publications}
 
 
 \end{document}
