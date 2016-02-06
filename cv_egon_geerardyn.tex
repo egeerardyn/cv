@@ -8,8 +8,6 @@
 
 \addbibresource{biblio/ownWork.bib}
 
-\usepackage{xspace}
-
 \firstName{Egon}
 \lastName{Geerardyn}
 \tagLine{Electronics Engineer with a passion for IT}
@@ -29,22 +27,22 @@
 \profileResearchGate{Egon\_Geerardyn}
 \profileStackOverflow{Egon}{514071}
 
+\newlink{\VUB}{Vrije Universiteit Brussel}{https://www.vub.ac}
+\newlink{\TUe}{Technische Universiteit Eindhoven}{https://www.tue.nl}
+\newlink{\Stanford}{Stanford}{https://stanford.edu}
+\newlink{\EPFL}{EPFL}{https://epfl.ch}
+\newlink{\CST}{Control System Technology}{https://www.tue.nl/en/university/departments/mechanical-engineering/research/research-groups/control-systems-technology/}
+
+\newlink{\PK}{Polytechnische Kring}{https://www.pk.be}
+\newlink{\ELEC}{ELEC~(Vrije Universiteit Brussel)}{http://www.vubirelec.be}
+
+\newlink{\JohanSchoukens}{Johan Schoukens}{http://vubirelec.be/people/johan-schoukens}
+\newlink{\TomOomen}{Tom Oomen}{http://www.toomen.eu}
+\newlink{\PietWambacq}{Piet Wambacq}{https://www.linkedin.com/in/piet-wambacq-5ab852a}
+\newlink{\GerdVandersteen}{Gerd Vandersteen}{http://vubirelec.be/people/gerd-vandersteen}
+
 \begin{document}
 \maketitle
-
-\newcommand{\VUB}{\hlink{Vrije Universiteit Brussel}{https://www.vub.ac.be/}}
-\newcommand{\TUe}{\hlink{Technische Universiteit Eindhoven}{https://www.tue.nl}}
-\newcommand{\Stanford}{\hlink{Stanford}{https://stanford.edu}}
-\newcommand{\EPFL}{\hlink{EPFL}{https://epfl.ch}}
-\newcommand{\CST}{\hlink{Control System Technology}{https://www.tue.nl/en/university/departments/mechanical-engineering/research/research-groups/control-systems-technology/}}
-\newcommand{\TikZ}{\mbox{Ti\emph{k}Z}\xspace}
-\newcommand{\PK}{\hlink{Polytechnische Kring}{https://www.pk.be}}
-\newcommand{\ELEC}{\hlink{ELEC}{http://www.vubirelec.be} (\VUB)}
-
-\newcommand{\JohanSchoukens}{\hlink{Johan Schoukens}{}\xspace}
-\newcommand{\TomOomen}{\hlink{Tom Oomen}{http://www.toomen.eu}\xspace}
-\newcommand{\PietWambacq}{\hlink{Piet Wambacq}{https://www.linkedin.com/in/piet-wambacq-5ab852a}\xspace}
-\newcommand{\GerdVandersteen}{\hlink{Gerd Vandersteen}{http://vubirelec.be/people/gerd-vandersteen}\xspace}
 
 \begin{education}
   \addEducation%
@@ -52,14 +50,14 @@
   {2011 -- 2016}
   {PhD Electrical Engineering (dr.)}{\VUB}
   {In my research on user-friendly identification of linear systems, I gained expertise in \keyword{system identification} and \keyword{measurements}. During my two-month stay at the \CST{} group at the \TUe, I improved my proficiency in \keyword{robust control} and applied my research in the field.
-  Promotors: \JohanSchoukens and \TomOomen.}
+  Promotors: \JohanSchoukens{} and \TomOomen.}
 
   \addEducation%
   {2006 -- 2011}
   {BSc \& MSc Engineering Science: Electronics  and IT (ir.)}
   {\VUB}
   {In my thesis ``A Simulation Method for Pinpointing the Dominant Nonlinear Contributors in CMOS Circuits'' I wrote a tool in \keyword{ANTLR}, \keyword{Java} and \keyword{MATLAB} that performs a labor-intensive Volterra analysis on electrical circuits. 
-  Promotors: \PietWambacq and \GerdVandersteen.\\
+  Promotors: \PietWambacq{} and \GerdVandersteen.\\
   For this work I received the \keyword{\hlink{IMEC}{http://www.imec.be} award} for best master thesis at the VUB.}
 
   \addText{\vspace{-5.35\baselineskip}2011 -- now}
@@ -74,15 +72,13 @@
   \hlink{Functional Programming with Scala}{https://www.coursera.org/course/progfun}, 
   \hlink{Machine Learning}{https://www.coursera.org/learn/machine-learning} and 
   \hlink{Databases}{https://lagunita.stanford.edu/courses/Home/Databases/Engineering/about}
-  that were taught by experts from 
-  \Stanford{} and 
-  \EPFL{}.}
+  that were taught by experts from \Stanford{} and \EPFL{}.}
 
 \end{education}
 
 \begin{experience}
-  \addJob{2012 -- now}{Major contributor and maintainer (since 2015)}{\hlink{ github:matlab2tikz}{https://github.com/matlab2tikz/matlab2tikz/}}{
-  I maintain the open-source program \code{matlab2tikz} that converts \keyword{MATLAB}/\keyword{Octave} figures to \keyword{\TikZ} (\keyword{\LaTeX}) code.
+  \addJob{2012 -- now}{Major contributor and maintainer (since 2015)}{\hlink{github:matlab2tikz}{https://github.com/matlab2tikz/matlab2tikz/}}{
+  I maintain the open-source program \code{matlab2tikz} that converts \keyword{MATLAB}/\keyword{Octave} figures to \keyword{TikZ} (\keyword{\LaTeX}) code.
   This program is one of the \hlink{most-downloaded}{http://www.mathworks.com/matlabcentral/fileexchange/?sort=downloads\_desc\&term=type\%3A\%22Function\%22} programs on FileExchange.\\
   I give guidance to half a dozen volunteers and keep track of the codebase using \keyword{git} and \keyword{Jenkins}.
   As a team, we respond to bug reports from users and provide viable work-arounds or bug fixes.
@@ -103,8 +99,8 @@ For the statistics, system theory, and system identification courses, I produced
 \end{languages}
 
 \section{skills}
-For my everyday work, I rely on \keyword{Mac OS X}, \keyword{Linux}, \keyword{MATLAB}, \keyword{SimuLink}, \keyword{LabView}, \keyword{Sage}, \keyword{R}, \keyword{LaTeX} and, \keyword{git}. 
-In previous projects, I have used \keyword{Python}, \keyword{ANTLR}, \keyword{Scala}, \keyword{Java}, \keyword{Delphi}, \keyword{assembly} and \keyword{VHDL} amongst others.\\
+For my everyday work, I rely on \keyword{Mac OS X}, \keyword{Linux}, \keyword{MATLAB}, \keyword{LabView}, \keyword{Sage}, \keyword{LaTeX} and, \keyword{git}.
+Previously, I have used \keyword{SimuLink}, \keyword{R}, \keyword{Python}, \keyword{ANTLR}, \keyword{Scala}, \keyword{Java}, \keyword{Delphi}, \keyword{assembly} and \keyword{VHDL} amongst others.\\
 As a teaching assistant, I taught \keyword{C} for \keyword{microcontroller} programming for electronics and control labs.
 
 \end{document}

@@ -303,6 +303,7 @@ backend=biber]{biblatex}
 }%
 
 \newcommand{\hlink}[2]{\udensdot{\href{#2}{#1}}}
+\newcommand{\newlink}[3]{\newcommand{#1}{\hlink{#2}{#3}}}
 
 %% Custom commands
 % see also awesome-cv
