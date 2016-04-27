@@ -1,4 +1,4 @@
-This repository contains the resumé/curriculum vitæ of Egon Geerardyn.
+This repository contains the résumé/curriculum vitæ of Egon Geerardyn.
 
 Rendered PDFs are available from the [releases tab](https://github.com/egeerardyn/cv/releases) for your convenience.
 
