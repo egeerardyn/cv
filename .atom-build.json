@@ -1,0 +1,12 @@
+{
+  "cmd": "arara",
+  "name": "arara",
+  "args": [ "-v", "cv_egon_geerardyn.tex" ],
+  "sh": false,
+  "cwd": "{PROJECT_PATH}",
+  "keymap": "cmd-B",
+  "comment": "//",
+  "errormatch":[
+      "^!.*?$"
+  ]
+}
