@@ -13,9 +13,6 @@
 #  - http://codeinthehole.com/writing/tips-for-using-a-git-pre-commit-hook/
 
 # Make sure working directory is clean
-# and the index does not have the output PDF (chance for conflicts!)
-git unstage cv_egon_geerardyn.pdf
-git checkout HEAD cv_egon_geerardyn.pdf
 git stash -q --keep-index
 
 # Try to compile CV
@@ -24,13 +21,12 @@ arara cv_egon_geerardyn.tex
 ERRarara=$?  #store the exit code for readability
 
 # Add freshly generated PDF to git
-if [ "$ERRarara" -eq 0 ]; then
-    git add -f cv_egon_geerardyn.pdf
+if [ "$ERRarara" -ne 0 ]; then
+    echo "Compilation failed! Please fix before pushing..."
 fi
 
 # Restore working directory
 git stash pop -q
-git checkout cv_egon_geerardyn.pdf
 
 # And we're done
 exit $ERRarara # pass on the error codes
