@@ -22,6 +22,7 @@
 
 
 \RequirePackage{amsmath}
+\RequirePackage{microtype}
 
 %% Version Control
 \input{vc.tex}
@@ -96,7 +97,6 @@
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Avenir Next}[UprightFont={* Regular},BoldFont={* Medium},BoldItalicFont={* Demi Bold}]
 \setmonofont[Scale=MatchLowercase]{Source Code Pro}
-
 
 \newcommand{\urlFormat}[1]{\color{grayVeryLight}{#1}}
 
