@@ -102,7 +102,7 @@
 
 %% Profiles
 \RequirePackage{fontawesome}
-\RequirePackage{academicons}
+%\RequirePackage{academicons}
 
 \def \@profiles {}
 \newcommand{\profile}[3]{\g@addto@macro\@profiles{\hlink{{#1~#2}}{#3}\hspace{1.0em}}} %icon,text,url
@@ -110,7 +110,7 @@
 \newcommand{\profileLinkedIn}[1]{\profile{\faicon{linkedin}}{#1}{https://www.linkedin.com/in/#1}} %username
 \newcommand{\profileFacebook}[1]{\profile{\faicon{facebook}}{#1}{https://www.facebook.com/#1}}
 \newcommand{\profileStackOverflow}[2]{\profile{\faicon{stack-overflow}}{#1}{http://stackoverflow.com/users/#2}} %username, userid
-\newcommand{\profileResearchGate}[1]{\profile{\protect{\aiicon{researchgate}}}{#1}{https://www.researchgate.net/profile/#1}} %username
+%\newcommand{\profileResearchGate}[1]{\profile{\protect{\aiicon{researchgate}}}{#1}{https://www.researchgate.net/profile/#1}} %username
 
 %%%%%%%%%%
 % Header %
@@ -197,7 +197,7 @@
     \par%
   }
 }
-\newcommand{\sectionHidden}[1]{}
+\newcommand{\sectionHidden}[1]{\vspace{1em}}
 
 \renewcommand{\subsection}[2]{
   \par\vspace{.5\parskip}%
@@ -364,6 +364,7 @@ backend=biber]{biblatex}
 % usage: \addLanguage{LANG}{LEVEL}{Description}
 \newcommand{\addLanguage}[3]{\textbf{#1} & #2 & #3\\ \maybeLine}
 \newenvironment{languages}{%
+  \vspace{-0.5em}
   \section{languages}
   \begin{longtabu*} to \columnwidth {@{}L{\sep}@{}L{\sep}@{}L{4\sep}@{}}%
   \maybeLine

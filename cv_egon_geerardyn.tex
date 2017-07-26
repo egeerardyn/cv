@@ -1,4 +1,4 @@
-%% arara: clean: { files: [cv_egon_geerardyn.aux, cv_egon_geerardyn.bbl, phdthesis.acn, phdthesis.acr, cv_egon_geerardyn.out, cv_egon_geerardyn.blg, cv_egon_geerardyn.log, cv_egon_geerardyn.run.xml, cv_egon_geerardyn.bcf] }
+% !arara: clean: { files: [cv_egon_geerardyn.aux, cv_egon_geerardyn.bbl, phdthesis.acn, phdthesis.acr, cv_egon_geerardyn.out, cv_egon_geerardyn.blg, cv_egon_geerardyn.log, cv_egon_geerardyn.run.xml, cv_egon_geerardyn.bcf] }
 % arara: vc
 % arara: xelatex: { shell : yes, synctex : yes, options : "-8bit" }
 % arara: biber
@@ -13,7 +13,7 @@
 \tagLine{Electronics Engineer with a passion for IT}
 \maritalStatus{not married}
 
-\address{Zomerstraat 26 GV 00\\1050 Brussels (Belgium)}
+\address{Maria-Theresiastraat 117/1\\3000 Leuven (Belgium)}
 \email{egon.geerardyn@gmail.com}
 % \website{egeerardyn.github.io}
 \phone{+32 472 65 61 08}
@@ -24,7 +24,7 @@
 
 \profileGithub{egeerardyn}
 \profileLinkedIn{egongeerardyn}
-\profileResearchGate{Egon\_Geerardyn}
+%\profileResearchGate{Egon\_Geerardyn}
 \profileStackOverflow{Egon}{514071}
 
 \newlink{\VUB}{Vrije Universiteit Brussel}{https://www.vub.ac.be}
@@ -35,6 +35,7 @@
 \newlink{\ELEC}{ELEC}{http://www.vubirelec.be}
 \newlink{\IMEC}{IMEC}{http://www.imec.be}
 \newlink{\PK}{Polytechnische Kring}{http://www.pk.be}
+\newlink{\lms}{Siemens Industry Software NV (LMS)}{https://www.plm.automation.siemens.com/en/products/lms/}
 
 
 \newcommand{\TikZ}{\mbox{Ti\emph{k}Z}\xspace}
@@ -49,22 +50,49 @@
 \begin{document}
 \maketitle
 
+\begin{experience}
+  \addJob{2016 -- now}%
+  {Software development engineer}%
+  {\lms}%
+  {%
+   Together with my team we develop the Test.Lab environmental testing and modal analysis applications in \keyword{(modern) C++} in \keyword{Visual Studio} (and some \keyword{C\#} and \keyword{VB}).
+   I am responsible for fine-tuning the numerical modal estimation algorithms and acoustic control schemes for reverberant chambers.
+   As a side-project, I have been working on code analysis in \keyword{Python} to improve code quality.
+  }
+
+  \addJob{2012 -- now}%
+  {Major contributor and maintainer (since 2015)}%
+  {\githubMatlabToTikz}{
+  I maintain the open-source program \code{matlab2tikz} that converts \keyword{MATLAB}/\keyword{Octave} figures to \keyword{TikZ} (\keyword{\LaTeX}) code.
+  This program is one of the \hlink{most-downloaded}{http://www.mathworks.com/matlabcentral/fileexchange/?sort=downloads\_desc\&term=type\%3A\%22Function\%22} programs on FileExchange.\\
+  I give guidance to half a dozen volunteers and keep track of the codebase using \keyword{git} and \keyword{Jenkins}.
+  }
+%   \addJob%
+%   {2009 -- 2011}
+%   {Engineering summer jobs}
+%   {\ELEC~(\VUB)}{
+% For the statistics, system theory, and system identification courses, I produced course notes, lab instructions, and measurement set-ups using \keyword{LyX}, \keyword{LabView} and \keyword{NI Elvis II}.}
+
+  \addJob{2007 -- 2009}{Web master and server admin}{\PK}{
+  For my engineering fraternity, I updated the website to \keyword{Joomla} and helped to maintain the \keyword{Gentoo Linux} web server running \keyword{Apache}, \keyword{MySQL} and \keyword{PHP}.
+  }
+\end{experience}
+
 \begin{education}
   \addEducation%
-  [private defense\\16 June 2016\\ \phantom{1} \\ \phantom{2}]%
   {2011 -- 2016}%
   {PhD Electrical Engineering (dr.)}%
   {\VUB}%
-  {In my research on user-friendly identification of linear systems, I gained expertise in \keyword{system identification} and \keyword{measurements}. During my two-month stay at the \CST{} group at the \TUe, I improved my proficiency in \keyword{robust control} and applied my research in the field.
+  {In my research on user-friendly identification of linear systems, I gained expertise in \keyword{system identification} and \keyword{measurements}. During my two-month stay at the \CST{} group at the \TUe, I improved my proficiency in \keyword{robust control} and applied my research in practice.
   Promotors: \JohanSchoukens{} and \TomOomen.}
 
   \addEducation%
   {2006 -- 2011}%
   {BSc \& MSc Engineering Science: Electronics  and IT (ir.)}%
   {\VUB}%
-  {In my thesis ``A Simulation Method for Pinpointing the Dominant Nonlinear Contributors in CMOS Circuits'' I wrote a tool in \keyword{ANTLR}, \keyword{Java} and \keyword{MATLAB} that performs a labor-intensive Volterra analysis on electrical circuits. 
-  Promotors: \PietWambacq{} and \GerdVandersteen.\\
-  For this work I received the \keyword{\IMEC{} award} for best master thesis at the VUB.}
+  {In my thesis, I wrote a tool in \keyword{ANTLR}, \keyword{Java} and \keyword{MATLAB} that performs a labor-intensive Volterra analysis on electrical (CMOS) circuits to pin-point non-linear contributors.
+  For this work, I received the \keyword{\IMEC{} award} for best MSc thesis.
+  Promotors: \PietWambacq{} and \GerdVandersteen.}
 
   \addText%
   {\vspace{-5.35\baselineskip}2011 -- now}%
@@ -77,34 +105,16 @@
   that were taught by experts from \Stanford{} and \EPFL{}.}
 \end{education}
 
-\begin{experience}
-  \addJob{2012 -- now}{Major contributor and maintainer (since 2015)}{\githubMatlabToTikz}{
-  I maintain the open-source program \code{matlab2tikz} that converts \keyword{MATLAB}/\keyword{Octave} figures to \keyword{TikZ} (\keyword{\LaTeX}) code.
-  This program is one of the \hlink{most-downloaded}{http://www.mathworks.com/matlabcentral/fileexchange/?sort=downloads\_desc\&term=type\%3A\%22Function\%22} programs on FileExchange.\\
-  I give guidance to half a dozen volunteers and keep track of the codebase using \keyword{git} and \keyword{Jenkins}.
-  As a team, we respond to bug reports from users and provide viable work-arounds or bug fixes.
-  }
-
-  \addJob%
-  {2009 -- 2011}
-  {Engineering summer jobs}
-  {\ELEC~(\VUB)}{
-For the statistics, system theory, and system identification courses, I produced course notes, lab instructions, and measurement set-ups using \keyword{LyX}, \keyword{LabView} and \keyword{NI Elvis II}.}
-
-  \addJob{2007 -- 2009}{Web master and server admin}{\PK}{
-  For my engineering fraternity, I updated the website to \keyword{Joomla} and helped to maintain the \keyword{Gentoo Linux} web server running \keyword{Apache}, \keyword{MySQL} and \keyword{PHP}.
-  }
-\end{experience}
-
 \begin{languages}
   \addLanguage{Dutch}{Native}{}
-  \addLanguage{English}{Advanced}{Daily use in an academic setting.}
-  \addLanguage{French}{Intermediate}{I have been living in Ixelles (Brussels) since 2013.}
+  \addLanguage{English}{Advanced}{Daily use in a professional setting.}
+  \addLanguage{French}{Intermediate}{I have lived in Ixelles (Brussels) for a few years.}
 \end{languages}
 
 \section{skills}
-For my everyday work, I rely on \keyword{Mac OS X}, \keyword{Linux}, \keyword{MATLAB}, \keyword{LabView}, \keyword{Sage}, \keyword{LaTeX}, and \keyword{git}.
-Previously, I have used \keyword{SimuLink}, \keyword{R}, \keyword{Python}, \keyword{ANTLR}, \keyword{Scala}, \keyword{Java}, \keyword{Delphi}, \keyword{assembly}, and \keyword{VHDL} amongst others.\\
-As a teaching assistant, I taught \keyword{C} for \keyword{microcontroller} programming for electronics and control labs.
+For my everyday work, I rely on \keyword{Windows}, \keyword{Visual Studio},  \keyword{MATLAB}, and \keyword{Python}.
+Previously, I have used \keyword{macOS}, \keyword{Linux}, \keyword{LabView}, \keyword{Sage}, \keyword{LaTeX}, \keyword{git}, and \keyword{NI hardware} extensively.
+I also have some experience with \keyword{SimuLink}, \keyword{R}, \keyword{ANTLR}, \keyword{Scala}, \keyword{Java}, \keyword{Delphi}, \keyword{assembly}, and \keyword{VHDL} amongst others.\\
+As a teaching assistant, I taught \keyword{C} for \keyword{microcontrollers}, \keyword{PCB} and filter design, and \keyword{PID control}.
 
 \end{document}
