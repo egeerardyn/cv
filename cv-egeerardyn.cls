@@ -129,6 +129,7 @@
 \def\email#1{\gdef\@email{#1}}
 \def\phone#1{\gdef\@phone{#1}}
 \def\website#1{\gdef\@website{#1}}
+\def\titles#1{\gdef\@titles{#1}}
 
 \newlength{\sep}
 \setlength{\sep}{0.1666666\columnwidth}
