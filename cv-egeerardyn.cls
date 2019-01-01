@@ -4,7 +4,7 @@
 %
 % # License
 % Copyright (C) 2012, Adrien Friggeri
-% Copyright (C) 2016, Egon Geerardyn
+% Copyright (C) 2016-2018, Egon Geerardyn
 %
 % Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 %
@@ -72,6 +72,7 @@
 \colorlet{address}{personalia}
 \colorlet{email}{personalia}
 \colorlet{birth}{profiles}
+\colorlet{mbti}{profiles}
 
 %%%%%%%%%
 % Fonts %
@@ -130,6 +131,7 @@
 \def\phone#1{\gdef\@phone{#1}}
 \def\website#1{\gdef\@website{#1}}
 \def\titles#1{\gdef\@titles{#1}}
+\def\mbti#1{\gdef\@mbti{#1}}
 
 \newlength{\sep}
 \setlength{\sep}{0.1666666\columnwidth}
@@ -168,6 +170,9 @@
       \fi
       \ifdefined\@birthDate
         \textcolor{birth}{born \@birthDate\ (\@nationality)}\\
+      \fi
+      \ifdefined\@mbti
+        \textcolor{mbti}{\textsc{mbti} \@mbti}\\
       \fi
     };
 
